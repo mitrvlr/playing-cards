@@ -1,12 +1,16 @@
 import './assets/scss/style.scss';
 
+import { Navigation } from './components/layouts/Navigation';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
+    <section className="app">
+      <header className="app-header">
         <h1>hello world</h1>
       </header>
-    </div>
+
+      <Navigation />
+    </section>
   );
 }
 
