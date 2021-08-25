@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $main-scheme: (
   primary: hsl(346deg 90% 64%),
   sunrise: hsla(0, 0%, 100%, 1),
@@ -23,6 +25,13 @@ $main-scheme-invert: (
   twilight: hsla(0, 0%, 7%, 1),
   midnight: hsla(0, 0%, 0%, 1),
 );
+
+$s-gutter-small: 1rem;
+$s-gutter-small-half: math.div($s-gutter-small, 2);
+$s-gutter: 1.6rem;
+$s-gutter-half: math.div($s-gutter, 2);
+$s-gutter-large: 2.4rem;
+$s-gutter-large-half: math.div($s-gutter-large, 2);
 
 :root {
   @each $k, $v in $main-scheme {
@@ -115,4 +124,18 @@ body {
     linear-gradient(#{convert-scheme(sunset)}, #{convert-scheme(sunset)});
   background-size: 10rem 100%, 100% 10rem, 100% 1rem, 1rem 100%, 100% 10rem, 10rem 100%, 10rem 100%, 10rem 10rem,
     10rem 10rem;
+}
+
+.app {
+  display: grid;
+  grid-template-areas: 'screen nav';
+  grid-template-columns: auto 18rem;
+  grid-template-rows: auto;
+  height: 100vh;
+}
+
+.navigation {
+  grid-area: nav;
+  box-shadow: convert-scheme(sunset) -2px 2px 6px;
+  background-color: convert-scheme(sunrise);
 }
