@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ModuleSeat from './Seat';
 
 const ModuleSheet = (props) => {
-  const [selectedSeats, setSelectedSeats] = useState(null);
+  const [selectedSeats, setSelectedSeats] = useState([]);
 
   const selectSeat = (seatId) => {
     if (selectedSeats.find((id) => id === seatId)) return;
