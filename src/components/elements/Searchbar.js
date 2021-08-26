@@ -1,13 +1,12 @@
 import React from 'react';
 import { AiOutlineSearch } from "react-icons/ai";
 import ElementIcon from './Icon';
-import ElementInput from './Input';
 
 const ElementSearchbar = (props) => {
   const onSearch = () => {
     if (!props.value) return;
     props.onSearchValue && props.onSearchValue();
-  }
+  };
 
   return (
     <div className={`searchbar ${props.className}`}>
