@@ -1,0 +1,25 @@
+.sheet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.seat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 5rem;
+  border-radius: 0.5rem;
+  background-color: #f0f0f7;
+  transition: all 0.2s;
+
+  &:hover {
+    transform: scale(1.03);
+    background-color: #c9c9d4;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
