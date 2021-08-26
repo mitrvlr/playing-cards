@@ -1,15 +1,25 @@
-import './assets/scss/style.scss';
+import { Switch, Route } from 'react-router-dom';
 
 import { Navigation } from './components/layouts/Navigation';
+
+import './assets/scss/style.scss';
 
 function App() {
   return (
     <section className="app">
-      <header className="app-header">
-        <h1>hello world</h1>
-      </header>
+      <Switch>
+        <Route exact path="/">
+          <header className="app-header">
+            <h1>hello world</h1>
+          </header>
 
-      <Navigation />
+          <Navigation />
+        </Route>
+
+        <Route exact path="/ui-kit">
+          <h1>ui kit</h1>
+        </Route>
+      </Switch>
     </section>
   );
 }
