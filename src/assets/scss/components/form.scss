@@ -1,0 +1,37 @@
+.input {
+  border-bottom: 0.1rem solid #f65077;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  font-size: 1.2rem;
+
+  &::placeholder {
+    color: #c5c5c5;
+  }
+}
+
+.searchbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 0.1rem solid #f65077;
+  padding: 0.4rem;
+  transition: all 0.2s;
+
+  .input {
+    flex: 1;
+    min-width: 1rem;
+    border-bottom: none;
+  }
+
+  .icon {
+    &--search path {
+      fill: #f65077;
+    }
+
+    &--remove path {
+      color: #c5c5c5;
+    }
+  }
+}
