@@ -1,8 +1,8 @@
 import { Switch, Route } from 'react-router-dom';
 
-import { Navigation } from './components/layouts/Navigation';
+import { Navigation } from '../layouts/Navigation';
 
-import './assets/scss/style.scss';
+import '../../assets/scss/style.scss';
 
 function App() {
   return (
