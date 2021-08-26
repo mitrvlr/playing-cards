@@ -25,6 +25,10 @@
     border-bottom: none;
   }
 
+  & ~ .select-box__list & {
+    margin-top: 0.8rem;
+  }
+
   .icon {
     &--search path {
       fill: #f65077;
