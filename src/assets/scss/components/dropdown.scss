@@ -1,3 +1,27 @@
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &__label {
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+
+  &__content {
+    display: none;
+  }
+
+  &__trigger:checked ~ & {
+    &__content {
+      display: block;
+    }
+
+    &__label .icon--dropdown {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 .select-box {
   box-sizing: border-box;
   position: absolute;
