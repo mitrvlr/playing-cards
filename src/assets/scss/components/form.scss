@@ -39,3 +39,28 @@
     }
   }
 }
+
+.sheet-creator {
+  &__field {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 $s-gutter $s-gutter;
+  }
+
+  &__notify {
+    padding: 0 $s-gutter-small-half $s-gutter-small-half;
+  }
+
+  .input {
+    height: $s-gutter-large;
+    text-align: center;
+
+    &__label {
+      display: none;
+    }
+  }
+
+  .icon {
+    margin: 0 $s-gutter-small-half;
+  }
+}
