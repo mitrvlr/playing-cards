@@ -1,17 +1,17 @@
 .btn {
+  @include global-transition();
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   height: 3.5rem;
   padding: 0.5rem 1rem;
-  border: 0.1rem solid #f65077;
+  border: 0.1rem solid convert-scheme(primary);
   border-radius: 0.5rem;
-  background-color: #f65077;
+  background-color: convert-scheme(primary);
   font-weight: bold;
-  font-size: 1rem;
-  color: white;
-  transition: all 0.2s;
+  font-size: $f-footnote;
+  color: convert-scheme(sunrise);
 
   &:hover {
     border-color: #cf3a61;
@@ -23,15 +23,15 @@
   }
 
   &--primary {
-    border-color: #f65077;
-    background-color: #f65077;
+    border-color: convert-scheme(primary);
+    background-color: convert-scheme(primary);
     color: white;
   }
 
   &--secondary {
-    border-color: #f65077;
+    border-color: convert-scheme(primary);
     background-color: transparent;
-    color: #f65077;
+    color: convert-scheme(primary);
 
     &:hover {
       color: white;
@@ -41,13 +41,12 @@
   &--ghost {
     border-color: transparent;
     background-color: transparent;
-    color: #f65077;
+    color: convert-scheme(primary);
 
     &:hover {
       border-color: transparent;
       background-color: #f5f5fa;
       color: #cf3a61;
-
     }
   }
 
@@ -58,7 +57,7 @@
   }
 
   &--thin {
-    height: 2.4rem;
+    height: 2.8rem;
   }
 
   &--wide {
@@ -79,7 +78,7 @@
   border-radius: 50%;
   font-weight: bold;
   font-size: 1.2rem;
-  color: #f65077;
+  color: convert-scheme(primary);
   transition: all 0.2s;
   cursor: pointer;
 
@@ -94,7 +93,7 @@
   }
 
   &--primary {
-    background-color: #f65077;
+    background-color: convert-scheme(primary);
     color: white;
 
     &:hover {

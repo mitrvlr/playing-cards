@@ -1,0 +1,107 @@
+@use "sass:math";
+
+:root {
+  @each $k, $v in $main-scheme {
+    #{'--' + $k}: #{$v};
+  }
+
+  @media (prefers-color-scheme: light) {
+    @each $k, $v in $main-scheme-invert {
+      #{'--' + $k}: #{$v};
+    }
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: convert-scheme(midnight);
+  background-image: linear-gradient(
+      90deg,
+      #{convert-scheme(sunset)} 0,
+      #{convert-scheme(sunset)} 0.1rem,
+      transparent 0.1rem,
+      transparent 9.9rem,
+      transparent 10rem
+    ),
+    linear-gradient(
+      #{convert-scheme(sunset)} 0,
+      #{convert-scheme(sunset)} 0.1rem,
+      transparent 0.1rem,
+      transparent 9.9rem,
+      transparent 10rem
+    ),
+    linear-gradient(
+      #{convert-scheme(sunset)} 0,
+      #{convert-scheme(sunset)} 0.1rem,
+      transparent 0.1rem,
+      transparent 9.9rem,
+      transparent 10rem
+    ),
+    linear-gradient(
+      90deg,
+      #{convert-scheme(sunset)} 0,
+      #{convert-scheme(sunset)} 0.1rem,
+      transparent 0.1rem,
+      transparent 9.9rem,
+      transparent 10rem
+    ),
+    linear-gradient(
+      transparent 0,
+      transparent 0.5rem,
+      #{convert-scheme(sunrise)} 0.5rem,
+      #{convert-scheme(sunrise)} 9.5rem,
+      transparent 9.5rem,
+      transparent 10rem
+    ),
+    linear-gradient(
+      90deg,
+      #{convert-scheme(sunset)} 0,
+      #{convert-scheme(sunset)} 0.1rem,
+      transparent 0.1rem,
+      transparent 9.9rem,
+      #{convert-scheme(sunset)} 9.9rem,
+      #{convert-scheme(sunset)} 10rem
+    ),
+    linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 0.5rem,
+      #{convert-scheme(sunrise)} 0.5rem,
+      #{convert-scheme(sunrise)} 9.5rem,
+      transparent 9.5rem,
+      transparent 10rem
+    ),
+    linear-gradient(
+      transparent 0,
+      transparent 0.1rem,
+      #{convert-scheme(sunrise)} 0.1rem,
+      #{convert-scheme(sunrise)} 9.9rem,
+      transparent 9.9rem,
+      transparent 10rem
+    ),
+    linear-gradient(#{convert-scheme(sunset)}, #{convert-scheme(sunset)});
+  background-size: 10rem 100%, 100% 10rem, 100% 1rem, 1rem 100%, 100% 10rem, 10rem 100%, 10rem 100%, 10rem 10rem,
+    10rem 10rem;
+}
+
+.a11y {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+
+.app {
+  display: grid;
+  grid-template-areas: 'nav screen';
+  grid-template-columns: 18rem auto;
+  grid-template-rows: auto;
+  height: 100vh;
+}
+
+.playground {
+  background-color: convert-scheme(sunrise);
+}
