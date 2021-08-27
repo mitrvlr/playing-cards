@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ModuleSheetCreator from '../modules/SheetCreator';
+import ModuleSectorCreator from '../modules/SectorCreator';
+import ModuleSheet from '../modules/Sheet';
 
 const Mat = () => {
+  const [selectedOrganizationInfo, setSelectedOrganizationInfo] = useState(null);
+
+  const updateSector = (selectedInfo) => {
+    setSelectedOrganizationInfo(selectedInfo);
+  };
+
   return (
-    <div>
-      <h2>Mat</h2>
-    </div>
+    <section>
+      <ModuleSheetCreator />
+      <ModuleSectorCreator updateSector={updateSector} />
+      <ModuleSheet selectedOrganizationInfo={selectedOrganizationInfo} />
+    </section>
   );
 };
 
