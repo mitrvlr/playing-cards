@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
-import ModuleSheetCreator from '../modules/SheetCreator';
-import ModuleSectorCreator from '../modules/SectorCreator';
+import React from 'react';
 import ModuleSheet from '../modules/Sheet';
+import UiKit from '../pages/UiKit';
 
 const Mat = () => {
-  const [selectedOrganizationInfo, setSelectedOrganizationInfo] = useState(null);
-
-  const updateSector = (selectedInfo) => {
-    setSelectedOrganizationInfo(selectedInfo);
-  };
-
   return (
     <section>
-      <ModuleSheetCreator />
-      <ModuleSectorCreator updateSector={updateSector} />
-      <ModuleSheet selectedOrganizationInfo={selectedOrganizationInfo} />
+      <ModuleSheet />
+
+      <UiKit />
     </section>
   );
 };
