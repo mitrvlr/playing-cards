@@ -105,3 +105,9 @@ body {
 .playground {
   background-color: convert-scheme(sunrise);
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
