@@ -1,9 +1,13 @@
 import React from 'react';
+import Logo from '../elements/Logo';
+import SheetCreator from '../modules/SheetCreator';
 
 const Navigation = () => {
   return (
     <aside className="navigation">
-      <h2>Navigation</h2>
+      <Logo />
+
+      <SheetCreator />
     </aside>
   );
 };
