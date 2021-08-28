@@ -1,13 +1,10 @@
 import React from 'react';
 import ModuleSheet from '../modules/Sheet';
-import UiKit from '../pages/UiKit';
 
 const Mat = () => {
   return (
-    <section>
+    <section className="mat">
       <ModuleSheet />
-
-      <UiKit />
     </section>
   );
 };
