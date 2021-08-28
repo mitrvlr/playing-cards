@@ -1,17 +1,28 @@
 import React from 'react';
 
-const ElementInput = (props) => {
+const ElementInput = ({
+  id,
+  label,
+  type = 'text',
+  placeholder,
+  value = '',
+  onChange,
+  maxLength = 999,
+}) => {
   return (
     <>
-      <label className="input__label" htmlFor={props.id}>{props.label || props.id}</label>
+      <label className="input__label" htmlFor={id}>
+        {label || id}
+      </label>
       <input
-        id={props.id}
+        id={id}
         className="input"
-        type={props.type || 'text'}
-        placeholder={props.placeholder}
-        name={props.id}
-        value={props.value || ''}
-        onChange={props.onChange}
+        type={type}
+        placeholder={placeholder}
+        name={id}
+        defaultValue={value || ''}
+        onChange={onChange}
+        maxLength={maxLength}
       />
     </>
   );
