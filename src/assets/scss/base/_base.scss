@@ -103,7 +103,11 @@ body {
 }
 
 .playground {
-  background-color: convert-scheme(sunrise);
+  grid-area: screen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
