@@ -81,8 +81,8 @@ body {
       transparent 10rem
     ),
     linear-gradient(#{convert-scheme(sunset)}, #{convert-scheme(sunset)});
-  background-size: 10rem 100%, 100% 10rem, 100% 1rem, 1rem 100%, 100% 10rem, 10rem 100%, 10rem 100%, 10rem 10rem,
-    10rem 10rem;
+  background-size: 10rem 100%, 100% 10rem, 100% 1rem, 1rem 100%, 100% 10rem,
+    10rem 100%, 10rem 100%, 10rem 10rem, 10rem 10rem;
 }
 
 .a11y {
@@ -110,4 +110,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.mat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

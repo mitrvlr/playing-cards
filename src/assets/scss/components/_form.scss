@@ -41,6 +41,7 @@
 }
 
 .sheet-creator {
+  margin-top: $s-gutter;
   padding: $s-gutter-half;
   background-color: convert-scheme(sunrise);
   border-radius: 0.5rem;

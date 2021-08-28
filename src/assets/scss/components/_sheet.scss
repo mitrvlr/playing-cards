@@ -1,14 +1,13 @@
 .sheet {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  gap: $s-gutter-half;
 }
 
 .seat {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 7rem;
+  width: 8rem;
   height: 5rem;
   border-radius: 0.5rem;
   background-color: #f0f0f7;
