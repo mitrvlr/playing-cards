@@ -17,7 +17,7 @@ const dropdownList = [
 
 const UiKit = () => {
   return (
-    <section>
+    <section className="playground">
       <h2>Playground</h2>
 
       {/* Buttons */}
@@ -44,7 +44,12 @@ const UiKit = () => {
       {/* Icon Button */}
       <div>
         <ModuleDropdown id="dropdown" label="DROPDOWN" list={dropdownList} />
-        <ModuleDropdown id="select-box" label="SELECT BOX" list={dropdownList} search />
+        <ModuleDropdown
+          id="select-box"
+          label="SELECT BOX"
+          list={dropdownList}
+          search
+        />
       </div>
 
       {/*  Dropdown */}
