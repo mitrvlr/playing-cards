@@ -41,14 +41,14 @@
 }
 
 .sheet-creator {
+  padding: $s-gutter-half;
+  background-color: convert-scheme(sunrise);
+  border-radius: 0.5rem;
+
   &__field {
     display: inline-flex;
     align-items: center;
-    padding: 0 $s-gutter $s-gutter;
-  }
-
-  &__notify {
-    padding: 0 $s-gutter-small-half $s-gutter-small-half;
+    padding: 0 $s-gutter;
   }
 
   .input {
