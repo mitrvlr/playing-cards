@@ -5,7 +5,7 @@ import { AiFillMinusCircle } from 'react-icons/ai';
 
 import { organizationList, currentSector } from '../../store/atoms';
 
-const SectorCreator = () => {
+const SectorSelector = () => {
   const [sector, setSector] = useRecoilState(currentSector);
 
   const [organizations] = useRecoilState(organizationList);
@@ -38,4 +38,4 @@ const SectorCreator = () => {
     </div>
   );
 };
-export default SectorCreator;
+export default SectorSelector;

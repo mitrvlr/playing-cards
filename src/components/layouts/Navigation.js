@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../elements/Logo';
 import SheetCreator from '../modules/SheetCreator';
-import SectorCreator from '../modules/SectorCreator';
+import SectorSelector from '../modules/SectorSelector';
 
 const Navigation = () => {
   return (
@@ -9,7 +9,7 @@ const Navigation = () => {
       <Logo />
 
       <SheetCreator />
-      <SectorCreator />
+      <SectorSelector />
     </aside>
   );
 };
