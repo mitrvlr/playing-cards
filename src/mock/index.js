@@ -1,8 +1,3 @@
-export const sheet = {
-  row: 6,
-  col: 10,
-}
-
 export const responseOrganizations = [
   {
     id: 0,
