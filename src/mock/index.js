@@ -123,80 +123,86 @@ export const responseSheetVersion1 = [
   },
 ];
 
-export const organization = [
+export const sectors = [
   {
     id: 1,
     title: 'group 1',
     theme: 'hsla(0, 100%, 84%, 1)',
-    member: [
-      {
-        id: 0,
-        member: 'jeon',
-        locate: [0, 0],
-      },
-      {
-        id: 1,
-        member: 'choi',
-        locate: [0, 1],
-      },
-      {
-        id: 2,
-        member: 'joo',
-        locate: [0, 2],
-      },
-      {
-        id: 3,
-        member: null, // 개발실에 예약된 좌석
-        locate: [1, 0],
-      },
-    ],
+    members: [0, 1, 2],
   },
   {
     id: 2,
     title: 'group 2',
     theme: 'hsla(33, 100%, 82%, 1)',
-    member: [],
+    members: [],
   },
   {
     id: 3,
     title: 'group 3',
     theme: 'hsla(52, 100%, 77%, 1)',
-    member: [],
+    members: [],
   },
   {
     id: 4,
     title: 'group 4',
     theme: 'hsla(110, 100%, 87%, 1)',
-    member: [],
+    members: [],
   },
   {
     id: 5,
     title: 'group 5',
     theme: 'hsla(157, 90%, 84%, 1)',
-    member: [],
+    members: [],
   },
   {
     id: 6,
     title: 'group 6',
     theme: 'hsla(185, 100%, 80%, 1)',
-    member: [],
+    members: [],
   },
   {
     id: 7,
     title: 'group 7',
     theme: 'hsla(217, 100%, 81%, 1)',
-    member: [],
+    members: [],
   },
   {
     id: 8,
     title: 'group 8',
     theme: 'hsla(249, 100%, 85%, 1)',
-    member: [],
+    members: [],
   },
   {
     id: 9,
     title: 'group 9',
     theme: 'hsla(300, 100%, 89%, 1)',
-    member: [],
+    members: [],
+  },
+];
+
+export const members = [
+  {
+    id: 0,
+    title: 'jeon',
+    sectorId: 1,
+    locate: [0, 0],
+  },
+  {
+    id: 1,
+    title: 'choi',
+    sectorId: 1,
+    locate: [0, 1],
+  },
+  {
+    id: 2,
+    title: 'joo',
+    sectorId: 1,
+    locate: [0, 2],
+  },
+  {
+    id: 3,
+    title: null, //
+    sectorId: 1, // 개발실에 예약된 좌석
+    locate: [1, 0],
   },
 ];
