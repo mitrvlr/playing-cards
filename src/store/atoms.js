@@ -1,15 +1,15 @@
 import { atom } from 'recoil';
-import { responseOrganizations, responseSheetVersion1 } from '../mock';
+import { organization, responseSheetVersion1 } from '../mock';
 
 export const sheetMap = atom({
   key: 'sheetMap',
   default: [5, 4],
 });
 
-export const sheetMapMode = atom({
-  key: 'sheetMapMode',
+export const currentSector = atom({
+  key: 'currentSector',
   default: null,
-})
+});
 
 export const currentSectorInfo = atom({
   key: 'currentSectorInfo',
@@ -23,8 +23,8 @@ export const selectedSeatMap = atom({
 });
 
 export const organizationList = atom({
-  key: 'responseOrganizations',
-  default: responseOrganizations,
+  key: 'organization',
+  default: organization,
 });
 
 export const sheetVersion1 = atom({
