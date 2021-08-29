@@ -56,23 +56,23 @@ export const responseSheetVersion1 = [
     color: 'rgb(255, 240, 139)',
     sheet: [
       {
-        memberId: 0,
-        member: 'jeon',
+        seatId: 0,
+        member: '전성하',
         locate: [0, 0],
       },
       {
-        memberId: 1,
-        member: 'choi',
+        seatId: 1,
+        member: '최은지',
         locate: [0, 1],
       },
       {
-        memberId: 2,
-        member: 'joo',
+        seatId: 2,
+        member: null, // 개발실에 예약된 좌석
         locate: [0, 2],
       },
       {
-        memberId: 3,
-        member: null, // 개발실에 예약된 좌석
+        seatId: 3,
+        member: null,
         locate: [1, 0],
       },
     ]
@@ -83,17 +83,17 @@ export const responseSheetVersion1 = [
     color: 'rgb(156, 235, 206)',
     sheet: [
       {
-        memberId: 0,
+        seatId: 0,
         member: 'kim',
         locate: [3, 0],
       },
       {
-        memberId: 1,
+        seatId: 1,
         member: null,
         locate: [3, 1],
       },
       {
-        memberId: 2,
+        seatId: 2,
         member: null,
         locate: [3, 2],
       },
@@ -105,17 +105,17 @@ export const responseSheetVersion1 = [
     color: 'rgb(230, 206, 255)',
     sheet: [
       {
-        memberId: 0,
+        seatId: 0,
         member: 'kang',
         locate: [0, 4],
       },
       {
-        memberId: 1,
+        seatId: 1,
         member: null,
         locate: [3, 3],
       },
       {
-        memberId: 1,
+        seatId: 1,
         member: null,
         locate: [3, 4],
       },
