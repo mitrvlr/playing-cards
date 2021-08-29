@@ -1,15 +1,13 @@
 import React from 'react';
-import { BsGrid1X2Fill, BsFillGrid3X3GapFill } from 'react-icons/bs';
-import { AiOutlinePlus } from "react-icons/ai";
-import { BsCheck } from 'react-icons/bs/index';
+import { BsCheck } from 'react-icons/bs';
+import { AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 
 const ElementButton = (props) => {
   return (
     <button className={`btn ${props.className}`} disabled={props.disabled} onClick={props.callback}>
       {props.isAdded && <AiOutlinePlus />}
       {props.isChecked && <BsCheck />}
-      {props.addSheet && <BsFillGrid3X3GapFill />}
-      {props.addSector && <BsGrid1X2Fill />}
+      {props.isCancel && <AiOutlineClose />}
       {props.children}
     </button>
   );
