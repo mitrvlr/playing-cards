@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { BsChevronDown } from 'react-icons/bs/index';
-import { AiOutlinePlus } from 'react-icons/ai/index';
+import { BsChevronDown } from 'react-icons/bs';
+import { AiOutlinePlus } from 'react-icons/ai';
 import ElementSearchbar from '../elements/Searchbar';
 import ModuleSelectBox from './SelectBox';
 
