@@ -1,6 +1,13 @@
 .sheet {
-  display: grid;
-  gap: $s-gutter-half;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__row {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
 }
 
 .seat {
@@ -12,6 +19,10 @@
   border-radius: 0.5rem;
   background-color: #f0f0f7;
   transition: all 0.2s;
+
+  &[disabled] {
+    cursor: default;
+  }
 
   &:hover {
     transform: scale(1.03);

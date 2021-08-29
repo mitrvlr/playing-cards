@@ -25,11 +25,13 @@
 .select-box {
   box-sizing: border-box;
   position: absolute;
-  top: 100%;
+  top: calc(100% + #{$s-gutter-small-half});
   left: 50%;
   width: 100%;
-  min-width: 11.5rem;
+  display: flex;
   flex-direction: column;
+  gap: 0.8rem;
+  min-width: 11.5rem;
   border: 0.1rem solid #e6e4ff;
   border-radius: 0.5rem;
   padding: 0.8rem;
@@ -53,19 +55,26 @@
     box-sizing: border-box;
     border-radius: 0.5rem;
     padding: 0.6rem 0.8rem 0.6rem 1.2rem;
-    display: inline-block;
+    display: flex;
+    gap: 0.5rem;
     width: 100%;
     background-color: #f0f0f7;
     color: #5e5d66;
     font-size: 1rem;
     transition: all 0.2s;
+    align-items: center;
 
     &:hover {
       padding-left: 1.6rem;
+      color: #f65077;
     }
 
     &:active {
       transform: scale(0.95);
+    }
+
+    svg {
+      display: none;
     }
   }
 
@@ -73,18 +82,20 @@
     background-color: #f0f0f7;
     font-weight: bold;
     color: #f65077;
+
+    svg {
+      display: block;
+    }
   }
 
   li + li {
-    margin-top: 0.4rem;
+    margin-top: $s-gutter-small-half;
   }
 
   &__notify {
-    padding: $s-gutter-half $s-gutter-small-half $s-gutter-small-half;
-  }
-
-  .searchbar {
-    margin-top: -0.5rem;
-    margin-bottom: 0.8rem;
+    padding-right: $s-gutter-small-half;
+    padding-left: $s-gutter-small-half;
+    font-size: 1.2rem;
+    color: #5e5d66;
   }
 }
