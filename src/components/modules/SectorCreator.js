@@ -1,119 +1,136 @@
-import React, { useState, useEffect } from 'react';
-import { BsChevronDown, BsGrid1X2Fill } from 'react-icons/bs/index';
+ import React, { useState, useRef } from 'react';
+import { useRecoilState } from 'recoil';
+
+import { BsChevronDown, BsGrid1X2Fill } from 'react-icons/bs';
+
 import ModuleSelectBox from '../modules/SelectBox';
 import ElementSearchbar from '../elements/Searchbar';
 import ElementButton from '../elements/Button';
 
-const initOrganization = [
-  {
-    id: 0,
-    name: '개발실',
-  },
-  {
-    id: 1,
-    name: '기획팀',
-  },
-  {
-    id: 2,
-    name: '마케팅팀',
-  },
-];
+import { organizationList, selectedSeatMap, currentSectorInfo, sheetVersion1 } from '../../store/atoms';
 
-const SectorCreator = (props) => {
+const SectorCreator = () => {
   const [mode, setMode] = useState(false);
-  const [organization, setOrganization] = useState(initOrganization);
   const [showDropdown, toggleDropdown] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [selectedOrganization, setSelectedOrganization] = useState('');
 
-  const notificationLabel = selectedOrganization.name ?
-    `<strong>${selectedOrganization.name}</strong>의 구역을 생성하시겠습니까?` : '구역 생성을 위해 조직을 선택하세요.';
+  const [currentSector, setCurrentSector] = useRecoilState(currentSectorInfo);
+  const [selectedSeats, setSelectedSeats] = useRecoilState(selectedSeatMap);
+  const [organizationSheet, setOrganizationSheet] = useRecoilState(sheetVersion1);
 
-  const selectDropdownItem = (selectedItem) => {
-    setSelectedOrganization(selectedItem);
+  const [organizations] = useRecoilState(organizationList);
+  const [list, setList] = useState(organizations);
+
+  const onToggleDropdown = () => {
+    toggleDropdown((state) => !state);
   };
 
-  const onAddSheet = () => {
-    if (!selectedOrganization) {
-      return alert('선택된 조직이 없습니다.');
+  const onChangeSearchValue = (e) => {
+    const { value } = e.target;
+    const filteredList = organizations.filter((item) => item.title.includes(value));
+
+    setList(filteredList);
+    setSearchValue(value);
+
+    if (!value) {
+      setList(organizations);
     }
-    setMode((currentMode) => !currentMode);
   };
 
-  const onResetSector = () => {
-    setMode((currentMode) => !currentMode);
-    setSelectedOrganization('');
+  const onSelectSector = (sector) => {
+    setMode(true);
+    setList(organizations);
+    setSearchValue('');
+    setCurrentSector(sector);
+  };
+
+  const onResetMode = () => {
+    setMode(false);
+    setCurrentSector(null);
+    setSelectedSeats([]);
+    // sector sheet 변경 리셋
+    setOrganizationSheet((state) => state);
   };
 
   const onSubmitSector = () => {
-    setSelectedOrganization('');
+    setMode(false);
     toggleDropdown(false);
-    props.updateSector({ organization: selectedOrganization, color: '#fff08b'});
+    setCurrentSector(null);
+    setSelectedSeats([]);
+    // sector sheet 변경 업데이트
+    onUpdateSector();
   };
 
-    useEffect(() => {
-    if (!searchValue) {
-      return setOrganization(initOrganization);
-    }
-    const filteredValue = initOrganization.filter((item) => item.name.includes(searchValue));
-    setOrganization(filteredValue);
-  }, [searchValue]);
+  const onUpdateSector = () => {
+    const { id, title, color } = currentSector;
+    const cloneSheetInfo = JSON.parse(JSON.stringify(organizationSheet));
+
+    cloneSheetInfo.map((organization) => {
+      if (organization.id === id) {
+        // update sector : 선택한 부서의 섹터 정보가 존재 할 경우.
+        // todo: currentSectorInfo 의 sheet 배열이 초기값이 되도록 수정
+        const sheet = selectedSeats.map((seat, i) => {
+          return {
+            memberId: organization.sheet.length + i,
+            member: null,
+            locate: seat.split(',').map((i) => Number(i)),
+          }
+        });
+        // todo: organization.sheet = sheet
+        organization.sheet.push(...sheet);
+      } else {
+        // add sector : 선택한 부서의 섹터 정보가 존재하지 않을 경우.
+        const sheet = selectedSeats.map((seat, i) => {
+          return {
+            memberId: i,
+            member: null,
+            locate: seat.split(',').map((i) => Number(i)),
+          }
+        });
+        cloneSheetInfo.push({ id, title, color, sheet });
+      }
+    });
+    setOrganizationSheet(cloneSheetInfo);
+  };
 
   return (
     <div className="dropdown">
       <input
         id="dropdown__sector-creator"
-        type="checkbox"
         className="a11y dropdown__trigger"
+        type="checkbox"
         checked={showDropdown}
-        onChange={() => toggleDropdown((state) => !state)}
+        onChange={onToggleDropdown}
       />
-      <label htmlFor="dropdown__sector-creator" className="dropdown__label btn btn--secondary">
+      <label className="dropdown__label btn" htmlFor="dropdown__sector-creator">
         <BsGrid1X2Fill />
         ADD SECTOR
         <BsChevronDown className="icon icon--dropdown" size="1.2rem" />
       </label>
 
       <div className="dropdown__content">
-        {mode ? (
+        {(currentSector && mode) ? (
           <div className="select-box">
-            {notificationLabel && (
-              <p className="select-box__notify">
-                시트에서 <strong>{selectedOrganization.name}</strong> 좌석을 선택하고 저장하세요.
-              </p>
-            )}
-
+            <p className="select-box__notify">시트에서 <strong>{currentSector.title}</strong> 좌석을 선택하고 저장하세요.</p>
             <div className="btn-set btn-set--content">
-              <ElementButton
-                isCancel
-                className="btn--thin btn--secondary"
-                callback={onResetSector}>
-                RESET
-              </ElementButton>
-              <ElementButton
-                isChecked
-                className="btn--thin"
-                callback={onSubmitSector}
-              >
-                APPLY
-              </ElementButton>
+              <ElementButton isCancel className="btn--thin btn--secondary" callback={onResetMode} />
+              <ElementButton isChecked className="btn--thin" callback={onSubmitSector}>APPLY</ElementButton>
             </div>
           </div>
         ) : (
           <ModuleSelectBox
-            listLabel="sector-creator"
-            listType="radio"
-            list={organization}
-            notificationLabel={notificationLabel}
-            confirmLabel="ADD"
             isConfirm
-            onClickItem={selectDropdownItem}
-            onSubmit={onAddSheet}
+            confirmLabel="ADD"
+            list={list}
+            listType="radio"
+            listLabel="sector-creator"
+            notificationLabel="구역 생성을 위해 조직을 선택하세요."
+            onSubmit={onSelectSector}
           >
             <ElementSearchbar
               placeholder="search"
               value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={onChangeSearchValue}
               onResetValue={() => setSearchValue('')}
             />
           </ModuleSelectBox>
