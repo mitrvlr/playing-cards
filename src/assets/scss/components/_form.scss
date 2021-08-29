@@ -40,7 +40,7 @@
   }
 }
 
-.sheet-creator {
+.editor {
   padding: $s-gutter-half;
   background-color: convert-scheme(sunrise);
   border-radius: 0.5rem;
@@ -62,5 +62,28 @@
 
   .icon {
     margin: 0 $s-gutter-small-half;
+  }
+}
+
+.selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  column-gap: $s-gutter;
+  row-gap: $s-gutter;
+  font-size: $f-title;
+
+  &__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @each $pallet in $pallets {
+      $i: index($pallets, $pallet);
+
+      &:nth-child(#{$i}) {
+        color: convert-scheme($pallet);
+      }
+    }
   }
 }

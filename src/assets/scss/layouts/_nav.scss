@@ -8,4 +8,27 @@
   background-color: convert-scheme(primary);
   color: convert-scheme(sunset);
   font-size: $f-topic;
+
+  &__item {
+    padding: $s-gutter-half;
+    background-color: convert-scheme(sunrise);
+    border-radius: 0.5rem;
+  }
+}
+
+.block {
+  &__field {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 $s-gutter;
+  }
+
+  .input {
+    height: $s-gutter-large;
+    text-align: center;
+
+    &__label {
+      display: none;
+    }
+  }
 }
