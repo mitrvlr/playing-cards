@@ -15,12 +15,10 @@ const ModuleSheet = () => {
 
   const onSelectSeat = (seatId) => {
     // 이미 선택된 시트를 선택 할 경우, 선택이 취소됨.
-    const alreadySelected = selectedSeats.find((id) => id === seatId);
-    const filteredSeats = selectedSeats.filter((id) => id !== seatId);
+    // const alreadySelected = selectedSeats/**/.find((id) => id === seatId);
+    // const filteredSeats = selectedSeats.filter((id) => id !== seatId);
 
-    setSelectedSeats((state) =>
-      alreadySelected ? [...filteredSeats] : [...state, seatId]
-    );
+    setSelectedSeats((state) => [...state, seatId]);
   };
 
   const locateMap = Array.from({ length: col * row }, (v, i) => {
@@ -29,41 +27,23 @@ const ModuleSheet = () => {
     return [x, y];
   });
 
-  useEffect(() => {
-    console.log('[selectedSeats]', selectedSeats);
-  }, [selectedSeats]);
+  useEffect(() => {}, [selectedSeats]);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <div className="sheet" style={{ marginBottom: '5rem' }}>
-        {rowLocateMap?.map((row) => (
-          <div className="sheet__row" key={row}>
-            {colLocateMap?.map((col) => (
-              <ModuleSeat
-                key={col}
-                seatId={`${row},${col}`}
-                onSelectSeat={onSelectSeat}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-
-      <div
-        className="sheet"
-        style={{
-          gridTemplateColumns: `repeat(${col}, 1fr)`,
-          gridTemplateRows: `repeat(${row}, 1fr)`,
-        }}
-      >
-        {locateMap.map((locate) => (
-          <ModuleNewSeat
-            key={locate}
-            locate={locate}
-            onSelectSeat={onSelectSeat}
-          />
-        ))}
-      </div>
+    <div
+      className="sheet"
+      style={{
+        gridTemplateColumns: `repeat(${col}, 1fr)`,
+        gridTemplateRows: `repeat(${row}, 1fr)`,
+      }}
+    >
+      {locateMap.map((locate) => (
+        <ModuleNewSeat
+          key={locate}
+          locate={locate}
+          onSelectSeat={onSelectSeat}
+        />
+      ))}
     </div>
   );
 };
