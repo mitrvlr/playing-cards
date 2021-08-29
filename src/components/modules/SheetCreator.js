@@ -25,8 +25,8 @@ const SheetCreator = () => {
   };
 
   return (
-    <div className="sheet-creator">
-      <div className="sheet-creator__field">
+    <div className="editor">
+      <div className="editor__field">
         <ElementInput
           id="col"
           type="number"
