@@ -12,7 +12,7 @@ const ModuleSheet = () => {
   const colLocateMap = Array.from({ length: col }, (v, i) => i);
   const rowLocateMap = Array.from({ length: row }, (v, i) => i);
 
-  const onSelectSeat = (seatId) => {
+  const onClickSector = (seatId) => {
     // 이미 선택된 시트를 선택 할 경우, 선택이 취소됨.
     const alreadySelected = selectedSeats.find((id) => id === seatId);
     const filteredSeats = selectedSeats.filter((id) => id !== seatId);
@@ -29,7 +29,7 @@ const ModuleSheet = () => {
       {rowLocateMap?.map((row) => (
         <div className="sheet__row" key={row}>
           {colLocateMap?.map((col) => (
-            <ModuleSeat key={col} seatId={`${row},${col}`} onSelectSeat={onSelectSeat} />
+            <ModuleSeat key={col} seatId={`${row},${col}`} onClickSector={onClickSector} />
           ))}
         </div>
       ))}
