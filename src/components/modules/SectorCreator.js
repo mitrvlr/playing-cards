@@ -1,19 +1,20 @@
- import React, { useState, useRef } from 'react';
+ import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { BsChevronDown, BsGrid1X2Fill } from 'react-icons/bs';
 
-import ModuleSelectBox from '../modules/SelectBox';
+import OrganizationSelectBox from './OrganizationSelectBox';
 import ElementSearchbar from '../elements/Searchbar';
 import ElementButton from '../elements/Button';
 
-import { organizationList, selectedSeatMap, currentSectorInfo, sheetVersion1 } from '../../store/atoms';
+import { organizationList, selectedSeatMap, currentSectorInfo, sheetVersion1, sheetMapMode } from '../../store/atoms';
 
 const SectorCreator = () => {
   const [mode, setMode] = useState(false);
   const [showDropdown, toggleDropdown] = useState(false);
   const [searchValue, setSearchValue] = useState('');
 
+  const [sheetMode, setSheetMode] = useRecoilState(sheetMapMode);
   const [currentSector, setCurrentSector] = useRecoilState(currentSectorInfo);
   const [selectedSeats, setSelectedSeats] = useRecoilState(selectedSeatMap);
   const [organizationSheet, setOrganizationSheet] = useRecoilState(sheetVersion1);
@@ -39,26 +40,29 @@ const SectorCreator = () => {
 
   const onSelectSector = (sector) => {
     setMode(true);
+    setSheetMode('ADD_SECTOR');
     setList(organizations);
     setSearchValue('');
     setCurrentSector(sector);
   };
 
   const onResetMode = () => {
-    setMode(false);
-    setCurrentSector(null);
-    setSelectedSeats([]);
-    // sector sheet 변경 리셋
+    resetDropdown();
+    // sector reset 감지
     setOrganizationSheet((state) => state);
   };
 
   const onSubmitSector = () => {
-    setMode(false);
     toggleDropdown(false);
+    resetDropdown();
+    onUpdateSector();
+  };
+
+  const resetDropdown = () => {
+    setMode(false);
+    setSheetMode(null);
     setCurrentSector(null);
     setSelectedSeats([]);
-    // sector sheet 변경 업데이트
-    onUpdateSector();
   };
 
   const onUpdateSector = () => {
@@ -94,15 +98,15 @@ const SectorCreator = () => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown sector-creator">
       <input
-        id="dropdown__sector-creator"
+        id="dropdown-sector-creator"
         className="a11y dropdown__trigger"
         type="checkbox"
         checked={showDropdown}
         onChange={onToggleDropdown}
       />
-      <label className="dropdown__label btn" htmlFor="dropdown__sector-creator">
+      <label className="dropdown__label btn" htmlFor="dropdown-sector-creator">
         <BsGrid1X2Fill />
         ADD SECTOR
         <BsChevronDown className="icon icon--dropdown" size="1.2rem" />
@@ -118,8 +122,7 @@ const SectorCreator = () => {
             </div>
           </div>
         ) : (
-          <ModuleSelectBox
-            isConfirm
+          <OrganizationSelectBox
             confirmLabel="ADD"
             list={list}
             listType="radio"
@@ -133,7 +136,7 @@ const SectorCreator = () => {
               onChange={onChangeSearchValue}
               onResetValue={() => setSearchValue('')}
             />
-          </ModuleSelectBox>
+          </OrganizationSelectBox>
         )}
       </div>
     </div>
