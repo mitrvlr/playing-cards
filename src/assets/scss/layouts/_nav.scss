@@ -1,5 +1,8 @@
 .navigation {
+  display: flex;
+  flex-direction: column;
   grid-area: nav;
+  gap: $s-gutter;
   padding: $s-gutter;
   box-shadow: convert-scheme(musk) -2px 2px 6px;
   background-color: convert-scheme(primary);
