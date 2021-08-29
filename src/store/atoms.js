@@ -6,6 +6,11 @@ export const sheetMap = atom({
   default: [5, 4],
 });
 
+export const sheetMapMode = atom({
+  key: 'sheetMapMode',
+  default: null,
+});
+
 export const currentSector = atom({
   key: 'currentSector',
   default: null,
