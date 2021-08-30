@@ -1,80 +1,64 @@
 import React, { useState } from 'react';
-import ElementButton from '../elements/Button';
+import { useRecoilState } from 'recoil';
+import { currentSectorInfo, organizationList, sheetMapMode } from '../../store/atoms';
 import { BsCheck } from 'react-icons/bs';
 
-const OrganizationSelectBox = (props) => {
+import OrganizationItem from './OrganizationItem';
+
+import { SheetMode } from '../../policy';
+
+const OrganizationSelectBox = ({ list, listLabel, listType, notificationLabel, isDepth, children }) => {
   const [selectItem, setSelectItem] = useState(null);
+  const [organizations] = useRecoilState(organizationList);
+  const [sheetMode, setSheetMode] = useRecoilState(sheetMapMode);
+  const [currentSector, setCurrentSector] = useRecoilState(currentSectorInfo);
 
-  const onClickItem = (item) => {
-    if (props.isDepth) return;
+  const onChangeCheckbox = (e, selectedOrganization) => {
+    const { checked } = e.target;
+    const selectedSector = organizations.find((organization) => organization.id === selectedOrganization.id);
 
-    setSelectItem(item);
-    props.onClickItem && props.onClickItem(item);
-  };
+    setCurrentSector(selectedSector);
 
-  const onClickSubItem = (item) => {
-    setSelectItem(item);
-    props.onClickSubItem && props.onClickSubItem(item);
-  };
-
-  const onSubmit = () => {
-    props.onSubmit(selectItem);
+    if (checked && isDepth) {
+      setSheetMode(SheetMode.SELECT_MEMBER);
+    }
+    if (!checked) {
+      setSheetMode(null);
+    }
+    if (sheetMode === SheetMode.SELECT_SECTOR) {
+      setSheetMode(SheetMode.ASSIGN_SECTOR);
+      setSelectItem(selectedOrganization);
+    }
   };
 
   return (
     <div className="select-box">
-      {props.children}
+      {children}
 
       <ul className="select-box__list">
-        {props.list?.map((item) => (
-          <li key={item.id} onClick={() => onClickItem(item)}>
+        {list?.map((item) => (
+          <li key={item.id}>
             <input
-              id={`${props.listLabel}-${item.id}`}
+              id={`${listLabel}-${item.id}`}
               className="a11y"
-              name={props.listLabel || ''}
-              type={props.listType || 'checkbox' }
+              name={listLabel}
+              type={listType || 'checkbox' }
+              checked={isDepth ? sheetMode === SheetMode.SELECT_MEMBER : currentSector?.id === item.id}
+              onChange={(e) => onChangeCheckbox(e, item)}
             />
-            <label htmlFor={`${props.listLabel}-${item.id}`}><BsCheck />{item.title}</label>
+            <label htmlFor={`${listLabel}-${item.id}`}>
+              <BsCheck />{item.title}
+            </label>
 
-            {(props.isDepth && item.member?.length) && (
+            {(isDepth && item.member?.length) && (
               <ul className="select-box__list">
-                {item.member.map((subItem) => (
-                  <li key={subItem.memberId} onClick={() => onClickSubItem(item)}>
-                    <input
-                      id={`${props.listLabel}-${item.id}-${subItem.memberId}`}
-                      className="a11y"
-                      name={props.subListLabel || ''}
-                      type={props.subListType || 'checkbox' }
-                    />
-                    <label htmlFor={`${props.listLabel}-${item.id}-${subItem.memberId}`}>
-                      <BsCheck />{subItem.name}
-                    </label>
-                  </li>
-                  )
-                )}
+                {item.member.map((subItem) => <OrganizationItem key={subItem.memberId} memberInfo={subItem} />)}
               </ul>
             )}
           </li>
         ))}
       </ul>
-
-      {props.notificationLabel && (
-        <p
-          className="select-box__notify"
-          dangerouslySetInnerHTML={ {__html: props.notificationLabel} }
-        />
-      )}
-
-      <div className="btn-set btn-set--content">
-        <ElementButton
-          isChecked
-          disabled={!selectItem}
-          className="btn--thin"
-          callback={onSubmit}
-        >
-          {props.confirmLabel}
-        </ElementButton>
-      </div>
+      {notificationLabel && <p className="select-box__notify" dangerouslySetInnerHTML={ {__html: notificationLabel} } />}
     </div>
   );
 };
