@@ -3,10 +3,12 @@ import { useRecoilState } from 'recoil';
 import { currentSector, sectorsAtom, membersAtoms } from '../../store/atoms';
 
 const ModuleSeat = ({ locate, onSelectSeat }) => {
+  const [col, row] = locate;
   const [theme, setTheme] = useState(null);
+  const [member, setMember] = useState(null);
 
   const [sectors] = useRecoilState(sectorsAtom);
-  const [members] = useRecoilState(membersAtoms);
+  const [members, setMembers] = useRecoilState(membersAtoms);
   const [sector] = useRecoilState(currentSector);
 
   const onHandleSeat = (e) => {
@@ -15,10 +17,16 @@ const ModuleSeat = ({ locate, onSelectSeat }) => {
   };
 
   useEffect(() => {
+    for (const m of members) {
+      const [x, y] = m.locate;
+      const exactLocate = col === x && row === y;
+      exactLocate && setMember(m);
+    }
+
     return () => {
       // effect
     };
-  }, [sectors]);
+  }, [col, members, row]);
 
   return (
     <label
@@ -28,8 +36,10 @@ const ModuleSeat = ({ locate, onSelectSeat }) => {
     >
       <input
         type="text"
-        data-locate={locate}
+        data-locate-col={col}
+        data-locate-row={row}
         className="seat__input"
+        defaultValue={member?.title}
         readOnly
       />
     </label>
