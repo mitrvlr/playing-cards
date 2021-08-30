@@ -1,4 +1,4 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 import { BsChevronDown, BsGrid1X2Fill } from 'react-icons/bs';
@@ -7,7 +7,13 @@ import OrganizationSelectBox from './OrganizationSelectBox';
 import ElementSearchbar from '../elements/Searchbar';
 import ElementButton from '../elements/Button';
 
-import { organizationList, selectedSeatMap, currentSectorInfo, sheetVersion1, sheetMapMode } from '../../store/atoms';
+import {
+  organizationList,
+  selectedSeatMap,
+  currentSectorInfo,
+  sheetVersion1,
+  sheetMapMode,
+} from '../../store/atoms';
 
 const SectorCreator = () => {
   const [mode, setMode] = useState(false);
@@ -17,7 +23,8 @@ const SectorCreator = () => {
   const [sheetMode, setSheetMode] = useRecoilState(sheetMapMode);
   const [currentSector, setCurrentSector] = useRecoilState(currentSectorInfo);
   const [selectedSeats, setSelectedSeats] = useRecoilState(selectedSeatMap);
-  const [organizationSheet, setOrganizationSheet] = useRecoilState(sheetVersion1);
+  const [organizationSheet, setOrganizationSheet] =
+    useRecoilState(sheetVersion1);
 
   const [organizations] = useRecoilState(organizationList);
   const [list, setList] = useState(organizations);
@@ -28,7 +35,9 @@ const SectorCreator = () => {
 
   const onChangeSearchValue = (e) => {
     const { value } = e.target;
-    const filteredList = organizations.filter((item) => item.title.includes(value));
+    const filteredList = organizations.filter((item) =>
+      item.title.includes(value)
+    );
 
     setList(filteredList);
     setSearchValue(value);
@@ -78,7 +87,7 @@ const SectorCreator = () => {
             memberId: organization.sheet.length + i,
             member: null,
             locate: seat.split(',').map((i) => Number(i)),
-          }
+          };
         });
         // todo: organization.sheet = sheet
         organization.sheet.push(...sheet);
@@ -89,7 +98,7 @@ const SectorCreator = () => {
             memberId: i,
             member: null,
             locate: seat.split(',').map((i) => Number(i)),
-          }
+          };
         });
         cloneSheetInfo.push({ id, title, color, sheet });
       }
@@ -113,12 +122,25 @@ const SectorCreator = () => {
       </label>
 
       <div className="dropdown__content">
-        {(currentSector && mode) ? (
+        {currentSector && mode ? (
           <div className="select-box">
-            <p className="select-box__notify">시트에서 <strong>{currentSector.title}</strong> 좌석을 선택하고 저장하세요.</p>
+            <p className="select-box__notify">
+              시트에서 <strong>{currentSector.title}</strong> 좌석을 선택하고
+              저장하세요.
+            </p>
             <div className="btn-set btn-set--content">
-              <ElementButton isCancel className="btn--thin btn--secondary" callback={onResetMode} />
-              <ElementButton isChecked className="btn--thin" callback={onSubmitSector}>APPLY</ElementButton>
+              <ElementButton
+                isCancel
+                className="btn--thin btn--secondary"
+                callback={onResetMode}
+              />
+              <ElementButton
+                isChecked
+                className="btn--thin"
+                callback={onSubmitSector}
+              >
+                APPLY
+              </ElementButton>
             </div>
           </div>
         ) : (

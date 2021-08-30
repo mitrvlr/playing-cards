@@ -12,6 +12,15 @@ $main-scheme: (
   ash: hsla(0, 0%, 15%, 1),
   twilight: hsla(0, 0%, 7%, 1),
   midnight: hsla(0, 0%, 0%, 1),
+  pink: hsla(0, 100%, 84%, 1),
+  champagne: hsla(33, 100%, 82%, 1),
+  crayola: hsla(52, 100%, 77%, 1),
+  green: hsla(110, 100%, 87%, 1),
+  mint: hsla(157, 90%, 84%, 1),
+  celeste: hsla(185, 100%, 80%, 1),
+  eyes: hsla(217, 100%, 81%, 1),
+  purple: hsla(249, 100%, 85%, 1),
+  mauve: hsla(300, 100%, 89%, 1),
 );
 
 $main-scheme-invert: (
@@ -27,6 +36,8 @@ $main-scheme-invert: (
   twilight: hsla(0, 0%, 7%, 1),
   midnight: hsla(0, 0%, 0%, 1),
 );
+
+$pallets: pink, champagne, crayola, green, mint, celeste, eyes, purple, mauve;
 
 $s-gutter-small: 1rem;
 $s-gutter-small-half: math.div($s-gutter-small, 2);
@@ -60,7 +71,7 @@ $f-family-second: 'Gugi', cursive;
 
 //mixins
 @mixin global-transition {
-  transition: all 200ms ease-out;
+  transition: all 0.1s ease;
 }
 
 //font

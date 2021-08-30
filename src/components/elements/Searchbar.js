@@ -1,5 +1,5 @@
 import React from 'react';
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineSearch } from 'react-icons/ai';
 import ElementIcon from './Icon';
 
 const ElementSearchbar = (props) => {
@@ -9,7 +9,7 @@ const ElementSearchbar = (props) => {
   };
 
   return (
-    <div className={`searchbar ${props.className}`}>
+    <div className="searchbar">
       <AiOutlineSearch className="icon icon--search" size="1.4rem" />
       <input
         type="search"
@@ -18,8 +18,8 @@ const ElementSearchbar = (props) => {
         name="search"
         value={props.value}
         onChange={props.onChange}
-        onKeyPress={(e) => e.key === 'Enter' && onSearch()}/>
-      <ElementIcon isRemoved className="icon icon--remove" callback={props.onResetValue} />
+        onKeyPress={(e) => e.key === 'Enter' && onSearch()}
+      />
     </div>
   );
 };

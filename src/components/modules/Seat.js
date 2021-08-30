@@ -1,68 +1,73 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { sheetMapMode, sheetVersion1, currentSectorInfo } from '../../store/atoms';
+import { currentSector, sectorsAtom, membersAtoms, selectedMembersAtom } from '../../store/atoms';
 
+const ModuleSeat = ({ locate }) => {
+  const [col, row] = locate;
+  const [theme, setTheme] = useState(null);
+  const [member, setMember] = useState(null);
+  const [sectors, setSectors] = useRecoilState(sectorsAtom);
+  const [members, setMembers] = useRecoilState(membersAtoms);
+  const [sector, setSector] = useRecoilState(currentSector);
+  const [selectedMembers, setSelectedMembers] = useRecoilState(selectedMembersAtom);
 
-const ModuleSeat = (props) => {
-  const seatRef = useRef(null);
-  const [sheetMode] = useRecoilState(sheetMapMode);
-  const [organizationSheet] = useRecoilState(sheetVersion1);
-  const [currentSector] = useRecoilState(currentSectorInfo);
-  const [employee, setEmployee] = useState({ title: '', name: '' });
+  const onHandleSeat = (e) => {
+    const [firstMember, ...restMembers] = selectedMembers;
+    const { id, locateCol, locateRow } = e.target.dataset;
+    setTheme(sector ? sector?.theme : null);
 
-  const deactiveSeatColor = '#f0f0f7';
-  const activeSeatColor = currentSector?.color || '#c9c9d4';
-  const isAbleButtonState = currentSector || sheetMode !== 'ADD_SECTOR';
-
-  const onSelectSeat = () => {
-    const seatElem = seatRef.current;
-
-    if (!sheetMode) {
-      return props.onClickSeat(props.seatId);
+    if (firstMember && sector) {
+      setMember({ ...firstMember, locate: [locateCol, locateRow] });
+      setSelectedMembers(sector ? restMembers : [...selectedMembers, firstMember]);
     }
 
-    if (seatElem.dataset.sectorId) {
-      delete seatElem.dataset.sectorId;
-      seatElem.style.backgroundColor = deactiveSeatColor;
-    } else {
-      seatElem.dataset.sectorId = currentSector.id;
-      seatElem.style.backgroundColor = activeSeatColor;
+    if (!sector) {
+      const validMember = members.filter((value) => value.id === +id && value);
+      setSelectedMembers([...selectedMembers, ...validMember]);
+      e.target.removeAttribute('data-id');
     }
-    props.onClickSector(props.seatId);
   };
 
   useEffect(() => {
-    const seatElem = seatRef.current;
+    console.log('[members]', members);
+    return () => {
+      // effect
+    };
+  }, [members]);
 
-    organizationSheet?.map((organization) => {
-      organization.sheet.map((seat) => {
-        const isAssignedSeat = seat.locate.toString() === seatElem.dataset.seatId;
+  useEffect(() => {
+    for (const m of members) {
+      const [x, y] = m.locate;
+      const exactLocate = col === x && row === y;
+      exactLocate && setMember(m);
+    }
+  }, [col, members, row]);
 
-        if (isAssignedSeat) {
-          seatElem.dataset.sectorId = organization.id;
-          seatElem.style.backgroundColor = organization.color;
-          setEmployee({ title: organization.title, name: seat.member});
-          // todo: sector id 가 존재하지않는 시트는 disabled 처리 필요
-        }
-        if (isAssignedSeat && !seat.member) {
-          seatElem.classList.add('seat--reserved');
-        }
-      });
-    });
-  }, [organizationSheet]);
+  useEffect(() => {
+    for (const s of sectors) {
+      const exactTheme = s.id === member?.sectorId;
+      exactTheme && setTheme(s.theme);
+    }
+
+    // const otherMembers = selectedMembers.filter((value) => value?.id !== member?.id);
+    // const alreadyMember = selectedMembers.map((value) => value.id).includes(member?.id);
+    //
+    // console.log('[member]', alreadyMember, otherMembers);
+  }, [sectors, member]);
 
   return (
-    <button
-      ref={seatRef}
-      className="seat"
-      data-seat-id={props.seatId}
-      style={{ backgroundColor: deactiveSeatColor }}
-      disabled={!isAbleButtonState}
-      onClick={onSelectSeat}
-    >
-      <span className="seat__label">{employee.title}</span>
-      {employee.name}
-    </button>
+    <label className="seat" onClick={onHandleSeat} style={{ backgroundColor: theme, color: theme }}>
+      <input
+        type="text"
+        data-id={member?.id}
+        data-locate-col={col}
+        data-locate-row={row}
+        className="seat__input"
+        defaultValue={theme ? member?.title : ''}
+        readOnly
+      />
+    </label>
   );
-}
+};
+
 export default ModuleSeat;

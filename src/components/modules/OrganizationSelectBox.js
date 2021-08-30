@@ -32,26 +32,34 @@ const OrganizationSelectBox = (props) => {
               id={`${props.listLabel}-${item.id}`}
               className="a11y"
               name={props.listLabel || ''}
-              type={props.listType || 'checkbox' }
+              type={props.listType || 'checkbox'}
             />
-            <label htmlFor={`${props.listLabel}-${item.id}`}><BsCheck />{item.title}</label>
+            <label htmlFor={`${props.listLabel}-${item.id}`}>
+              <BsCheck />
+              {item.title}
+            </label>
 
-            {(props.isDepth && item.member?.length) && (
+            {props.isDepth && item.member?.length && (
               <ul className="select-box__list">
                 {item.member.map((subItem) => (
-                  <li key={subItem.memberId} onClick={() => onClickSubItem(item)}>
+                  <li
+                    key={subItem.memberId}
+                    onClick={() => onClickSubItem(item)}
+                  >
                     <input
                       id={`${props.listLabel}-${item.id}-${subItem.memberId}`}
                       className="a11y"
                       name={props.subListLabel || ''}
-                      type={props.subListType || 'checkbox' }
+                      type={props.subListType || 'checkbox'}
                     />
-                    <label htmlFor={`${props.listLabel}-${item.id}-${subItem.memberId}`}>
-                      <BsCheck />{subItem.name}
+                    <label
+                      htmlFor={`${props.listLabel}-${item.id}-${subItem.memberId}`}
+                    >
+                      <BsCheck />
+                      {subItem.name}
                     </label>
                   </li>
-                  )
-                )}
+                ))}
               </ul>
             )}
           </li>
@@ -61,7 +69,7 @@ const OrganizationSelectBox = (props) => {
       {props.notificationLabel && (
         <p
           className="select-box__notify"
-          dangerouslySetInnerHTML={ {__html: props.notificationLabel} }
+          dangerouslySetInnerHTML={{ __html: props.notificationLabel }}
         />
       )}
 
