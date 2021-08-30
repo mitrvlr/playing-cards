@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 import ModuleSeat from './Seat';
-import ModuleNewSeat from './NewSeat';
 import { sheetMap, selectedSeatMap } from '../../store/atoms';
 
 const ModuleSheet = () => {
@@ -38,11 +37,7 @@ const ModuleSheet = () => {
       }}
     >
       {locateMap.map((locate) => (
-        <ModuleNewSeat
-          key={locate}
-          locate={locate}
-          onSelectSeat={onSelectSeat}
-        />
+        <ModuleSeat key={locate} locate={locate} onSelectSeat={onSelectSeat} />
       ))}
     </div>
   );

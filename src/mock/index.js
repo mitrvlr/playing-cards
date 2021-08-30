@@ -183,26 +183,20 @@ export const sectors = [
 export const members = [
   {
     id: 0,
-    title: 'jeon',
+    title: '아이유',
     sectorId: 1,
     locate: [0, 0],
   },
   {
     id: 1,
-    title: 'choi',
-    sectorId: 1,
-    locate: [0, 1],
+    title: '이지은',
+    sectorId: null,
+    locate: [],
   },
   {
     id: 2,
-    title: 'joo',
-    sectorId: 1,
-    locate: [0, 2],
-  },
-  {
-    id: 3,
-    title: null, //
-    sectorId: 1, // 개발실에 예약된 좌석
-    locate: [1, 0],
+    title: '이지금',
+    sectorId: null,
+    locate: [],
   },
 ];

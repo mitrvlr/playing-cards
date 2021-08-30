@@ -16,6 +16,21 @@ export const membersAtoms = atom({
   default: members,
 });
 
+export const currentSector = atom({
+  key: 'currentSector',
+  default: null,
+});
+
+export const currentMember = atom({
+  key: 'currentMember',
+  default: null,
+});
+
+export const selectedMembersAtom = atom({
+  key: 'selectedMember',
+  default: [],
+});
+
 export const sheetMap = atom({
   key: 'sheetMap',
   default: [5, 4],
@@ -23,11 +38,6 @@ export const sheetMap = atom({
 
 export const sheetMapMode = atom({
   key: 'sheetMapMode',
-  default: null,
-});
-
-export const currentSector = atom({
-  key: 'currentSector',
   default: null,
 });
 

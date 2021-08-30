@@ -3,7 +3,6 @@ import Logo from '../elements/Logo';
 import SheetCreator from '../modules/SheetCreator';
 import SectorSelector from '../modules/SectorSelector';
 import MemberSelector from '../modules/MemberSelector';
-import SectorCreator from '../modules/SectorCreator';
 
 const Navigation = () => {
   return (
@@ -13,7 +12,6 @@ const Navigation = () => {
       <SheetCreator />
       <SectorSelector />
       <MemberSelector />
-      <SectorCreator />
     </aside>
   );
 };

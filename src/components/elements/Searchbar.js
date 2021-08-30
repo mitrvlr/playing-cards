@@ -9,7 +9,7 @@ const ElementSearchbar = (props) => {
   };
 
   return (
-    <div className={`searchbar ${props.className}`}>
+    <div className="searchbar">
       <AiOutlineSearch className="icon icon--search" size="1.4rem" />
       <input
         type="search"

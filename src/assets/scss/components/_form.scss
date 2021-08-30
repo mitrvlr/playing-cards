@@ -56,6 +56,45 @@
     }
   }
 
+  &__entries {
+    label {
+      @include global-transition();
+      box-sizing: border-box;
+      border-radius: 0.5rem;
+      margin-top: $s-gutter-half;
+      padding: $s-gutter-half $s-gutter-large-half $s-gutter-small-half;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #f0f0f7;
+      color: #5e5d66;
+      font-size: $f-footnote;
+
+      &:hover {
+        color: convert-scheme(sunrise);
+        background-color: convert-scheme(primary);
+      }
+
+      &:active {
+        transform: translate3d(0.1rem, 0.1rem, 0);
+      }
+
+      svg {
+        @include global-transition();
+        opacity: 0;
+      }
+    }
+
+    input:checked + label {
+      background-color: #f0f0f7;
+      color: #f65077;
+
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+
   .input {
     padding-top: $s-gutter-small-half;
     padding-bottom: $s-gutter-small-half;
