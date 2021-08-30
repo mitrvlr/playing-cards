@@ -3,11 +3,11 @@ import { useRecoilState } from 'recoil';
 import { currentSectorInfo, organizationList, sheetMapMode } from '../../store/atoms';
 import { BsCheck } from 'react-icons/bs';
 
-import OrganizationItem from './OrganizationItem';
+import MemberItem from './MemberItem';
 
 import { SheetMode } from '../../policy';
 
-const OrganizationSelectBox = ({ list, listLabel, listType, notificationLabel, isDepth, children }) => {
+const SectorSelectBox = ({ list, listLabel, listType, notificationLabel, isDepth, children }) => {
   const [selectItem, setSelectItem] = useState(null);
   const [organizations] = useRecoilState(organizationList);
   const [sheetMode, setSheetMode] = useRecoilState(sheetMapMode);
@@ -52,7 +52,7 @@ const OrganizationSelectBox = ({ list, listLabel, listType, notificationLabel, i
 
             {(isDepth && item.member?.length) && (
               <ul className="select-box__list">
-                {item.member.map((subItem) => <OrganizationItem key={subItem.memberId} memberInfo={subItem} />)}
+                {item.member.map((subItem) => <MemberItem key={subItem.memberId} memberInfo={subItem} />)}
               </ul>
             )}
           </li>
@@ -63,4 +63,4 @@ const OrganizationSelectBox = ({ list, listLabel, listType, notificationLabel, i
   );
 };
 
-export default OrganizationSelectBox;
+export default SectorSelectBox;

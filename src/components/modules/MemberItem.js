@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { BsCheck } from 'react-icons/bs/index';
 import { currentSectorInfo, selectedSeatMap, sheetVersion1 } from '../../store/atoms';
 
-const OrganizationItem = ({ memberInfo }) => {
+const MemberItem = ({ memberInfo }) => {
   const [checked, setChecked] = useState(false);
   const [organizationSheet, setOrganizationSheet] = useRecoilState(sheetVersion1);
   const [currentSector] = useRecoilState(currentSectorInfo);
@@ -93,4 +93,4 @@ const OrganizationItem = ({ memberInfo }) => {
     </li>
   );
 };
-export default OrganizationItem;
+export default MemberItem;
