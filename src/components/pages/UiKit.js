@@ -1,19 +1,7 @@
 import React from 'react';
 import ElementButton from '../elements/Button';
-import ModuleDropdown from '../modules/Dropdown';
 import ElementIcon from '../elements/Icon';
 import ElementSearchbar from '../elements/Searchbar';
-
-const dropdownList = [
-  {
-    id: 0,
-    name: '개발실',
-  },
-  {
-    id: 1,
-    name: '기획팀',
-  },
-];
 
 const UiKit = () => {
   return (
@@ -42,17 +30,6 @@ const UiKit = () => {
       </div>
 
       {/* Icon Button */}
-      <div>
-        <ModuleDropdown id="dropdown" label="DROPDOWN" list={dropdownList} />
-        <ModuleDropdown
-          id="select-box"
-          label="SELECT BOX"
-          list={dropdownList}
-          search
-        />
-      </div>
-
-      {/*  Dropdown */}
       <div>
         <ElementIcon isAdded />
         <ElementIcon isAdded className="icon-btn--primary" />

@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   outline: none;
-  font-size: 1.2rem;
+  font-size: $f-footnote;
 
   &::placeholder {
     color: #c5c5c5;
@@ -14,14 +14,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: $s-gutter-small-half;
   border-bottom: 0.1rem solid #f65077;
   padding: 0.4rem;
   transition: all 0.2s;
 
   .input {
     flex: 1;
-    min-width: 1rem;
+    min-width: $s-gutter-small;
     border-bottom: none;
   }
 
@@ -43,7 +43,7 @@
 .sheet-creator {
   padding: $s-gutter-half;
   background-color: convert-scheme(sunrise);
-  border-radius: 0.5rem;
+  border-radius: $s-gutter-small-half;
 
   &__field {
     display: inline-flex;

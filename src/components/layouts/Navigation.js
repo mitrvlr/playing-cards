@@ -1,8 +1,8 @@
 import React from 'react';
 import Logo from '../elements/Logo';
 import SheetCreator from '../modules/SheetCreator';
-import SectorCreator from '../modules/SectorCreator';
-import SearchOrganization from '../modules/SearchOrganization';
+import SectorSelector from '../modules/SectorSelector';
+import MemberSelector from '../modules/MemberSelector';
 
 const Navigation = () => {
   return (
@@ -10,8 +10,8 @@ const Navigation = () => {
       <Logo />
 
       <SheetCreator />
-      <SectorCreator />
-      <SearchOrganization />
+      <SectorSelector />
+      <MemberSelector />
     </aside>
   );
 };

@@ -3,7 +3,7 @@
   display: inline-block;
 
   &__label {
-    font-size: 1.4rem;
+    font-size: $f-contents;
     justify-content: space-between;
     cursor: pointer;
   }
@@ -40,15 +40,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: $s-gutter-half;
   min-width: 11.5rem;
   border: 0.1rem solid #e6e4ff;
-  border-radius: 0.5rem;
-  padding: 0.8rem;
+  border-radius: $s-gutter-small-half;
+  padding: $s-gutter-half $s-gutter-half $s-gutter;
   box-shadow: 0.1rem 0.2rem 0.4rem 0 rgb(0 0 0 / 10%);
   background-color: white;
   transform: translateX(-50%);
-  z-index: 1;
+  z-index: $z-default;
 
   &__list {
     overflow: scroll;
@@ -59,13 +59,18 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    .count {
+      flex: 1;
+      text-align: right;
+    }
   }
 
   &__list &__list {
     display: none;
     margin-top: $s-gutter-small-half;
     padding: $s-gutter-half;
-    border-radius: 0.5rem;
+    border-radius: $s-gutter-small-half;
     background-color: #f0f0f7;
 
     label {
@@ -76,13 +81,13 @@
   label {
     box-sizing: border-box;
     border-radius: 0.5rem;
-    padding: 0.6rem 0.8rem 0.6rem 1.2rem;
+    padding: 0.6rem $s-gutter-half 0.6rem 1.2rem;
     display: flex;
-    gap: 0.5rem;
+    gap: $s-gutter-small-half;
     width: 100%;
     background-color: #f0f0f7;
     color: #5e5d66;
-    font-size: 1rem;
+    font-size: $s-gutter-small;
     transition: all 0.2s;
     align-items: center;
 
@@ -121,7 +126,7 @@
   &__notify {
     padding-right: $s-gutter-small-half;
     padding-left: $s-gutter-small-half;
-    font-size: 1.2rem;
+    font-size: $f-footnote;
     color: #5e5d66;
   }
 }

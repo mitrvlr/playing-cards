@@ -3,7 +3,7 @@ import { responseOrganizations, responseSheetVersion1 } from '../mock';
 
 export const sheetMap = atom({
   key: 'sheetMap',
-  default: [5, 4],
+  default: [10, 7],
 });
 
 export const sheetMapMode = atom({

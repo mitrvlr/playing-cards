@@ -1,12 +1,12 @@
 .sheet {
   display: inline-flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: $s-gutter-small-half;
 
   &__row {
     display: inline-flex;
     flex-direction: row;
-    gap: 0.5rem;
+    gap: $s-gutter-small-half;
   }
 }
 
@@ -21,8 +21,7 @@
   padding: $s-gutter-half;
   background-color: #f0f0f7;
   transition: all 0.2s;
-  font-size: 1.2rem;
-  //cursor: default;
+  font-size: $f-footnote;
 
   &--reserved {
     filter: grayscale(50%);
@@ -30,14 +29,14 @@
 
   &__label {
     margin-top: -1.3rem;
-    font-size: 1rem;
+    font-size: $s-gutter-small;
     opacity: 0;
     transition: all 0.2s;
   }
-  
-  //&[data-sector-id] {
-  //  cursor: pointer;
-  //}
+
+  &[data-sector-id] {
+    cursor: pointer;
+  }
 
   &[disabled] {
     cursor: default;
