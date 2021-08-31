@@ -14,6 +14,7 @@ Side project for learn React ecosystem 😇
 
 ## Tutorial
 [![push push tutorial](https://j.gifs.com/57Ro6B.gif)](https://www.youtube.com/watch?v=FqdCvC4kdc4)
+[![push push tutorial2](https://j.gifs.com/36yq1r.gif)](https://youtu.be/Lg65HlMA_jw)
 
 ## Data modeling
 ![img](./assets/model.png)
