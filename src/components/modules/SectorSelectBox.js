@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { currentSectorInfo, organizationList, sheetMapMode } from '../../store/atoms';
+import { currentSectorInfo, organizationList, sheetMapMode, sheetVersion1 } from '../../store/atoms';
 import { BsCheck } from 'react-icons/bs';
 
 import MemberItem from './MemberItem';
@@ -9,7 +9,9 @@ import { SheetMode } from '../../policy';
 
 const SectorSelectBox = ({ list, listLabel, listType, notificationLabel, isDepth, children }) => {
   const [selectItem, setSelectItem] = useState(null);
+  const [assignedMembers, setAssignedMembers] = useState([]);
   const [organizations] = useRecoilState(organizationList);
+  const [organizationSheet] = useRecoilState(sheetVersion1);
   const [sheetMode, setSheetMode] = useRecoilState(sheetMapMode);
   const [currentSector, setCurrentSector] = useRecoilState(currentSectorInfo);
 
@@ -31,6 +33,18 @@ const SectorSelectBox = ({ list, listLabel, listType, notificationLabel, isDepth
     }
   };
 
+  useEffect(() => {
+    const assignedMemberSize = organizationSheet.map((sheets) => {
+      const assignedMembers = [];
+      sheets.sheet.reduce(
+        (pre, curr) => curr.member && assignedMembers.push(curr.member),
+        0
+      );
+      return assignedMembers.length;
+    });
+    setAssignedMembers(assignedMemberSize);
+  }, [organizationSheet]);
+
   return (
     <div className="select-box">
       {children}
@@ -47,7 +61,13 @@ const SectorSelectBox = ({ list, listLabel, listType, notificationLabel, isDepth
               onChange={(e) => onChangeCheckbox(e, item)}
             />
             <label htmlFor={`${listLabel}-${item.id}`}>
-              <BsCheck />{item.title}
+              <BsCheck />
+              {item.title}
+              {isDepth && (
+                <span className="count">
+                  {assignedMembers[item.id] || 0} / {item.member.length}
+                </span>
+              )}
             </label>
 
             {(isDepth && item.member?.length) && (

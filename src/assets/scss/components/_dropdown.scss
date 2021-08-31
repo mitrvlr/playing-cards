@@ -59,6 +59,11 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
+    .count {
+      flex: 1;
+      text-align: right;
+    }
   }
 
   &__list &__list {
