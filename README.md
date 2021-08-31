@@ -3,6 +3,9 @@
 # Push Push
 Side project for learn React ecosystem 😇
 
+## Preview
+[Essential ver](https://3j5ju.csb.app/) / [Day1 ver](https://g8k4w.csb.app/)
+
 ## Stacks
 - view : react
 - store : recoil
