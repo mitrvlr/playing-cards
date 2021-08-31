@@ -185,7 +185,7 @@ export const members = [
     id: 0,
     title: '아이유',
     sectorId: 1,
-    locate: [0, 0],
+    locate: [],
   },
   {
     id: 1,

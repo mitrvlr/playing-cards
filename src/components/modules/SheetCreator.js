@@ -25,35 +25,22 @@ const SheetCreator = () => {
   };
 
   return (
-    <div className="editor">
-      <div className="editor__field">
-        <ElementInput
-          id="col"
-          type="number"
-          value={sheet[0]}
-          placeholder="col"
-          onChange={onChangeSheet}
-        />
-        <AiOutlineClose size="3rem" color="#f65077" className="icon" />
-        <ElementInput
-          id="row"
-          type="number"
-          value={sheet[1]}
-          placeholder="row"
-          onChange={onChangeSheet}
-        />
-      </div>
+    <>
+      <h2 className="editor__title">시트 설정</h2>
+      <div className="editor">
+        <div className="editor__field">
+          <ElementInput id="col" type="number" value={sheet[0]} placeholder="col" onChange={onChangeSheet} />
+          <AiOutlineClose size="3rem" color="#f65077" className="icon" />
+          <ElementInput id="row" type="number" value={sheet[1]} placeholder="row" onChange={onChangeSheet} />
+        </div>
 
-      <div className="btn-set btn-set--content">
-        <ElementButton
-          isAdded
-          className="btn--thin btn--wide"
-          callback={onApplySheet}
-        >
-          ADD
-        </ElementButton>
+        <div className="btn-set btn-set--content">
+          <ElementButton isAdded className="btn--thin btn--wide" callback={onApplySheet}>
+            ADD
+          </ElementButton>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default SheetCreator;

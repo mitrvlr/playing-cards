@@ -25,21 +25,24 @@ const SectorSelector = () => {
   }, [sector]);
 
   return (
-    <div className="editor">
-      <div className="selector">
-        {list.map((item) => (
-          <label
-            key={item.id}
-            htmlFor={`select-box-${item.id}`}
-            className={`selector__label${item.id === sector?.id ? ' active' : ''}`}
-            data-title={item.title}
-          >
-            <AiFillPlusCircle />
-            <input id={`select-box-${item.id}`} className="a11y" onClick={() => onSelectSector(item)} />
-          </label>
-        ))}
+    <>
+      <h2 className="editor__title">그룹 선택</h2>
+      <div className="editor">
+        <div className="selector">
+          {list.map((item) => (
+            <label
+              key={item.id}
+              htmlFor={`select-box-${item.id}`}
+              className={`selector__label${item.id === sector?.id ? ' active' : ''}`}
+              data-title={item.title}
+            >
+              <AiFillPlusCircle />
+              <input id={`select-box-${item.id}`} className="a11y" onClick={() => onSelectSector(item)} />
+            </label>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 export default SectorSelector;

@@ -29,13 +29,6 @@ const ModuleSeat = ({ locate }) => {
   };
 
   useEffect(() => {
-    console.log('[members]', members);
-    return () => {
-      // effect
-    };
-  }, [members]);
-
-  useEffect(() => {
     for (const m of members) {
       const [x, y] = m.locate;
       const exactLocate = col === x && row === y;

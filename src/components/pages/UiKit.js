@@ -20,50 +20,31 @@ const UiKit = () => {
     <section className="playground">
       <h2>Playground</h2>
 
-      {/* Buttons */}
-      <div>
-        <ElementButton addSheet>ADD SHEET</ElementButton>
-        <ElementButton addSector className="btn--secondary">
-          ADD SECTOR
-        </ElementButton>
-        <ElementButton disabled>DISABLED</ElementButton>
-        <ElementButton isAdded className="btn--thin">
-          ADD
-        </ElementButton>
-        <ElementButton isChecked className="btn--thin btn--secondary">
-          CONFIRM
-        </ElementButton>
-        <ElementButton isChecked className="btn--ghost">
-          CONFIRM
-        </ElementButton>
-        <ElementButton isAdded className="btn--ghost">
-          ADD SOMETHING
-        </ElementButton>
-      </div>
+      <ElementButton addSheet>ADD SHEET</ElementButton>
+      <ElementButton addSector className="btn--secondary">
+        ADD SECTOR
+      </ElementButton>
+      <ElementButton disabled>DISABLED</ElementButton>
+      <ElementButton isAdded className="btn--thin">
+        ADD
+      </ElementButton>
+      <ElementButton isChecked className="btn--thin btn--secondary">
+        CONFIRM
+      </ElementButton>
+      <ElementButton isChecked className="btn--ghost">
+        CONFIRM
+      </ElementButton>
+      <ElementButton isAdded className="btn--ghost">
+        ADD SOMETHING
+      </ElementButton>
 
-      {/* Icon Button */}
-      <div>
-        <ModuleDropdown id="dropdown" label="DROPDOWN" list={dropdownList} />
-        <ModuleDropdown
-          id="select-box"
-          label="SELECT BOX"
-          list={dropdownList}
-          search
-        />
-      </div>
-
-      {/*  Dropdown */}
-      <div>
-        <ElementIcon isAdded />
-        <ElementIcon isAdded className="icon-btn--primary" />
-        <ElementIcon isRemoved />
-        <ElementIcon isRemoved className="icon-btn--primary" />
-      </div>
-
-      {/* Form */}
-      <div>
-        <ElementSearchbar />
-      </div>
+      <ModuleDropdown id="dropdown" label="DROPDOWN" list={dropdownList} />
+      <ModuleDropdown id="select-box" label="SELECT BOX" list={dropdownList} search />
+      <ElementIcon isAdded />
+      <ElementIcon isAdded className="icon-btn--primary" />
+      <ElementIcon isRemoved />
+      <ElementIcon isRemoved className="icon-btn--primary" />
+      <ElementSearchbar />
     </section>
   );
 };

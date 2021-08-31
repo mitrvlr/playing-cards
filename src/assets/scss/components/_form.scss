@@ -42,9 +42,23 @@
 }
 
 .editor {
-  padding: $s-gutter-half;
+  padding: $s-gutter-small $s-gutter-small;
   background-color: convert-scheme(sunrise);
   border-radius: 0.5rem;
+
+  &__title {
+    margin-top: $s-gutter-small-half;
+    padding-top: $s-gutter-small-half;
+    font-size: $f-topic;
+    color: convert-scheme(sunrise);
+  }
+
+  &__label {
+    padding: $s-gutter-small-half $s-gutter-small-half $s-gutter-small;
+    color: convert-scheme(primary);
+    font-size: $f-contents;
+    font-weight: normal;
+  }
 
   &__field {
     display: inline-flex;
@@ -57,6 +71,9 @@
   }
 
   &__entries {
+    max-height: 30vh;
+    overflow-y: auto;
+
     label {
       @include global-transition();
       box-sizing: border-box;

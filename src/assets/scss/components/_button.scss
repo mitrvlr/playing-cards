@@ -22,6 +22,12 @@
     transform: translate3d(0.1rem, 0.1rem, 0);
   }
 
+  &__group {
+    display: grid;
+    gap: $s-gutter-small-half;
+    margin-top: $s-gutter-large;
+  }
+
   &--primary {
     border-color: convert-scheme(primary);
     background-color: convert-scheme(primary);
@@ -30,7 +36,7 @@
 
   &--secondary {
     border-color: convert-scheme(primary);
-    background-color: transparent;
+    background-color: convert-scheme(sunrise);
     color: convert-scheme(primary);
 
     &:hover {
@@ -51,9 +57,12 @@
   }
 
   &[disabled] {
-    border-color: #c5c5c5;
-    background-color: #c5c5c5;
-    cursor: default;
+    border-color: convert-scheme(dusk);
+    background-color: convert-scheme(dusk);
+    justify-content: flex-start;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>😭</text></svg>")
+        16 0,
+      auto;
   }
 
   &--thin {
